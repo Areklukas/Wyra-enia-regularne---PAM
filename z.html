@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>Zadanie - PAM 03.04.2020</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <script type="text/javascript">
+    function klik()
+    {
+        var form =  document.getElementById('info-form'),
+            patt = 
+			{ 
+                'name' : /^[A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+$/i,
+                'kod' : /^[0-9]{2}-[0-9]{3}$/,
+                'email': /^[a-z0-9\._%-]+@[a-z0-9\.-]+\.[a-z]{2,4}$/i,
+				'miasto': /^[A-Z]{1}[a-z]+$/,
+				'telefon': /^[0-9]{3}-[0-9]{3}-[0-9]{3}$/,
+            };
+
+        for (var elem in patt) 
+        {
+            if (form[elem])
+            {
+                if (!patt[elem].test(form[elem].value))
+                {
+                    alert('Pole ' + elem + ' - nieprawidłowa wartość!');
+                    form[elem].style.background = 'red';
+                    return false;
+                }
+                else
+                {
+                    form[elem].style.background = '';
+                }
+            }
+        }
+        alert('Wszystkie pola zostały wypełnione prawidłowo');
+        form[elem].style.background = 'green';
+		return true;
+    }
+    </script>
+</head>
+<body>
+	<form action="#" id="info-form" onsubmit='return klik();'>
+        Imię i nazwisko: <input type="text" name="name" id="name"/><br />
+        Kod pocztowy: <input type="text" name="kod" id="kod"/><br />
+        E-mail: <input type="text" name="email" id="email"/><br />
+        Miasto: <input type="text" name="miasto" id="miasto"><br/>
+		Telefon: <input type="text" name="telefon" id="telefon"><br/>
+		
+		<button onclick="klik()">OK</button>
+    </form>
+</body>
+</html>
